@@ -1,3 +1,13 @@
+
+const express = require('express');
+const app = express();
+ app.use('/ping', (req, res) => {
+    res.send(new Date());
+});
+app.listen(3000, () => {
+  console.log('Im ready Now');
+});
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
@@ -11,22 +21,22 @@ const probot = require("probot-tax");
 ////Bot Status
 client.on('ready', () => {
   console.log(`🤠 : ${client.user.username}`);
-  client.user.setStatus('idle');///dnd/online/idle
-  let status = [`Athletes System`,`${prefix}help`];
+  client.user.setStatus('dnd');///dnd/online/idle
+  let status = [`𝖡𝗒 PS Store`,`${prefix}help`];
   setInterval(()=>{
   client.user.setActivity(status[Math.floor(Math.random()*status.length)]);
   },5000)
 })
 ///Definitions 
 const prefix = "+";///your prefix
-const owner = ["780906998962061343","780906998962061343"]///owner id
-const supportServer = "https://discord.gg/athletes"///server support
-const help_info_color = "#1e90ff"///color in help
-const color = "#1e90ff"//main color
+const owner = ["1013899139140038656","791265722356465677"]///owner id
+const supportServer = "https://discord.gg/8pUJgNpjvW"///server support
+const help_info_color = ""///color in help
+const color = ""//main color
 const moreInfo = `Need more info? use ${prefix}help`
-const line = "https://media.discordapp.net/attachments/1230198062165790841/1230281575053393941/Design_sans_titre_8.png?ex=6628dcc1&is=66278b41&hm=a48908fa4bf82c9e080528d21d4e44514039c97bbe84044f5c5395c9860a6a8f&=&format=webp&quality=lossless&width=1125&height=56"///url line link
-const صح = "<:Designsanstitre15:1231596307177799761>";//react
-const غلط = "<:Designsanstitre15:1231596307177799761>";//react
+const line = ""///url line link
+const صح = "";//react
+const غلط = "";//react
 
 ///auto react
 
@@ -36,8 +46,8 @@ client.on("message", async black => {
 
   if (black.channel.id !=83838388) return;
   if(black.author.id === client.user.id) return;
-      black.react("<:Designsanstitre15:1231596307177799761>")//react
-      black.react("<:Designsanstitre15:1231596307177799761>")//2
+      black.react("")//react
+      black.react("")//2
 
 
 
@@ -47,7 +57,24 @@ client.on("message", async black => {
 
 //tax channel
 
+client.on('message', message => {
+  let args = message.content
+  if (message.author.bot) return;
+  if (message.channel.id !== '1015957910020423734') return;
+let args2 = args.replace("k","000").replace("m", "000000").replace('M', "000000").replace('K', "000").replace('b',"000000000000").replace('B',"000000000000")
+let tax = Math.floor(args2 * (20) / (19) + (1))
+let tax2 = Math.floor(args2 * (20) / (19) + (1)-(args2))
+let tax3 = Math.floor(tax2 * (20) / (19) + (1))
+let tax4 = Math.floor(tax2 + tax3 + args2)
+if (isNaN(args2)) return message.channel.send(`**__Error__**`)
+if (args2 < 1) return message.channel.send("**Error**");
+if (args2 == 1) return message.channel.send(`> **Please Write a Number Hight to \`1\`**`);
 
+
+  if (message) {
+  message.channel.send(`> **Your Tax : __${probot.taxs(args2)}__**`)
+  }
+}); 
 
 
 client.on("message", message => {
